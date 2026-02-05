@@ -1,98 +1,92 @@
 # 🌐 IP Calc
 
-> Calculateur réseau moderne pour IPv4 & IPv6  
-> Pensé pour le subnetting, le routage et l’apprentissage réseau.
----
-## Présentation
+> **Calculateur réseau moderne & Planificateur VLAN**
+> Pensé pour le subnetting, le routage et l’apprentissage réseau (BTS SIO / Admin Sys).
 
-**IP Calc** est un outil web statique permettant de calculer rapidement et clairement
-toutes les informations réseau à partir d’une adresse IP (IPv4 ou IPv6).
-
-Ce projet a été développé dans un objectif **pédagogique (BTS SIO SISR)** mais aussi
-comme **outil pratique** pour les administrateurs systèmes et réseaux.
-
-Aucun backend requis : tout fonctionne **100 % côté client**.
----
-## Fonctionnalités
-
-### IPv4
-- Adresse réseau
-- Adresse de broadcast
-- Masque de sous-réseau (CIDR & décimal)
-- Wildcard mask (Cisco)
-- Plage d’adresses utilisables
-- Première & dernière IP utilisable
-- Nombre total d’adresses
-- Nombre d’hôtes utilisables
-- Taille du bloc (block size / incrément)
-- Sous-réseau précédent / suivant
-- Bits réseau vs bits hôte
-- IP, masque et wildcard en binaire
-- Classe IPv4 (A / B / C / D / E)
-- Type d’adresse :
-  - Privée (RFC1918)
-  - Publique
-  - Loopback
-  - Link-local (APIPA)
-  - Multicast
-  - Réservée
-- Détection des adresses spéciales :
-  - Réseau
-  - Broadcast
-  - Hôte
-- Reverse DNS / PTR zone (in-addr.arpa)
-
-###  IPv6
-- Détection automatique IPv6
-- Type d’adresse :
-  - Loopback
-  - Link-local
-  - Unique local
-  - Global unicast
-  - Multicast
-- Gestion des préfixes (ex: /64)
-- Bits réseau vs bits hôte
-- Informations de préfixe (plage théorique)
-
-### OSINT (optionnel)
-- Détection IP publique
-- Récupération des informations via API :
-  - Pays
-  - Ville (si disponible)
-  - ASN
-  - Fournisseur / Organisation
-- Gestion des erreurs API proprement
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Status](https://img.shields.io/badge/status-stable-success.svg)
 
 ---
 
-## Interface
+## 📖 Présentation
 
-- Design moderne (dashboard)
-- Responsive (desktop / mobile)
-- Dark mode avec sauvegarde (localStorage)
-- Cartes claires et lisibles
-- Boutons “Copier” pour chaque valeur
-- Animations légères
-- UI pensée pour l’apprentissage du subnetting
+**IP Calc** est un outil web statique complet permettant de calculer rapidement toutes les informations réseau à partir d’une adresse IP (IPv4 ou IPv6) et de planifier des VLANs.
+
+Ce projet a été développé dans un objectif **pédagogique** (BTS SIO SISR) mais aussi comme **outil pratique** pour les administrateurs systèmes et réseaux.
+
+🚀 **Aucun backend requis** : tout fonctionne **100 % côté client** dans votre navigateur.
 
 ---
 
-##Technologies utilisées
+## ✨ Fonctionnalités
 
-- **HTML5**
-- **Tailwind CSS** (CDN)
-- **JavaScript Vanilla**
-- API OSINT : `ipwho.is` / `ipapi.co` (selon implémentation)
+### 🖥️ Calculateur IPv4
+- **Analyse complète** : Adresse réseau, Broadcast, Masque (CIDR & décimal), Wildcard mask (Cisco).
+- **Plages & Hôtes** : Première/Dernière IP, nombre d'hôtes utilisables, taille du bloc.
+- **Détails techniques** : Conversion binaire temps réel, Classe (A/B/C...), Type (Privée, Publique, APIPA, etc.).
+- **Routage** : Zone Reverse DNS (PTR `in-addr.arpa`).
 
-Aucun framework, aucun backend.
+### 🌐 Support IPv6
+- Détection automatique.
+- Informations de base : Préfixe, Type d'adresse (Link-local, Global Unicast, etc.).
+- Gestion des notations compressées (`::`).
+
+### 🏗️ Planificateur VLAN (Nouveau !)
+- **Calcul FLSM** (Fixed Length Subnet Mask).
+- **Deux modes** :
+  1. Par nombre de VLANs souhaités.
+  2. Par nombre d'hôtes requis par VLAN.
+- **Génération automatique** du plan d'adressage.
+- **Export** :
+  - 📄 CSV (Excel compatible).
+  - ⚙️ Configuration Cisco IOS (`interface vlan x ...`).
+
+### 🕵️ OSINT (Optionnel)
+- Détection automatique des IP publiques.
+- Enrichissement via API externe (`ipwho.is`) : Pays, Ville, FAI (ISP), ASN.
 
 ---
 
-## Structure du projet
+## 🎨 Interface & UX
+
+- **Design Moderne** : Interface épurée type "Dashboard SaaS".
+- **Responsive** : Parfaitement utilisable sur mobile et desktop.
+- **Dark Mode** : Thème sombre natif avec persistance (localStorage).
+- **Pratique** : Boutons "Copier" partout, notifications toast, navigation par onglets.
+
+---
+
+## 🛠️ Technologies
+
+- **HTML5** : Structure sémantique.
+- **Tailwind CSS** (via CDN) : Design rapide et responsive.
+- **JavaScript (Vanilla)** : Logique de calcul (sans framework lourd type React/Vue).
+- **API** : `ipwho.is` pour les données géographiques (client-side fetch).
+
+---
+
+## 🚀 Installation & Utilisation
+
+Puisque c'est un site statique, aucune installation complexe n'est nécessaire.
+
+### En local
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/anis-guechetouli/IP-Calc.git
+   ```
+2. Ouvrez simplement le fichier `index.html` dans votre navigateur web préféré.
+
+### Déploiement
+Vous pouvez héberger ce projet gratuitement sur **GitHub Pages**, **Vercel**, ou **Netlify** en quelques secondes.
+
+---
+
+## 📂 Structure du projet
 
 ```text
 ip-calc/
 │
-├── index.html      # Calculateur IP principal
-├── about.html      # Page À propos
-├── README.md       # Documentation du projet
+├── index.html      # Application principale (Calculateur + VLAN)
+├── about.html      # Page À propos & FAQ
+└── README.md       # Documentation
